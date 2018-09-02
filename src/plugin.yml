@@ -2,7 +2,7 @@ name: TeamChat
 version: R1.0
 author: PixelTeleV
 
-main: ch.pixeltv.main.main
+main: ch.pixeltv.Main.Main
 
 commands:
   teamchat:

@@ -13,7 +13,7 @@ import java.io.IOException;
  * Decompiling is strictly forbidden!
  * Coded with Intellij
  */
-public class fileconfig {
+public class Fileconfig {
 
     public static String reloaded;
     public static String nopermission;

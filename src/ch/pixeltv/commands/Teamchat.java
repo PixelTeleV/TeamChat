@@ -1,7 +1,7 @@
 package ch.pixeltv.commands;
 
-import ch.pixeltv.main.main;
-import ch.pixeltv.util.fileconfig;
+import ch.pixeltv.main.Main;
+import ch.pixeltv.util.Fileconfig;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
  * Decompiling is strictly forbidden!
  * Coded with Intellij
  */
-public class teamchat implements CommandExecutor {
+public class Teamchat implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player)sender;
@@ -35,14 +35,15 @@ public class teamchat implements CommandExecutor {
 
                         for (Player p1 : Bukkit.getOnlinePlayers()) {
                             if (p1.hasPermission("System.TeamChat.See")) {
-                                String msg = fileconfig.message;
+                                String msg = Fileconfig.message;
                                 msg = msg.replace("%player%", p.getName());
                                 msg = msg.replace("%message%", message);
-                                p1.sendMessage(msg);
+                                p1.sendMessage(msg)
+                                ;
                             }
                         }
                     } else {
-                        p.sendMessage(fileconfig.syntax);
+                        p.sendMessage(Fileconfig.syntax);
                         p.sendMessage("§7Es sind folgende §eTeammitglieder §aOnline§7:");
                         for (Player all : Bukkit.getOnlinePlayers()) {
                             if (all.hasPermission("System.TeamChat.List")) {
@@ -51,26 +52,26 @@ public class teamchat implements CommandExecutor {
                         }
                     }
                 } else {
-                    sender.sendMessage(fileconfig.noplayer);
+                    sender.sendMessage(Fileconfig.noplayer);
                 }
             } else {
-                p.sendMessage(fileconfig.nopermission);
+                p.sendMessage(Fileconfig.nopermission);
             }
         }
 
         //TeamChat Command
-        if (cmd.getName().equalsIgnoreCase("teamchat")) {
+        if (cmd.getName().equalsIgnoreCase("Teamchat")) {
             if (args.length == 0) {
-                p.sendMessage("§eTeamChat Plugin §7coded by §aPixelTeleV§7! §9Version: " + main.version);
+                p.sendMessage("§eTeamChat Plugin §7coded by §aPixelTeleV§7! §9Version: " + Main.version);
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     if (p.hasPermission("System.TeamChat.Reload")) {
-                        fileconfig.loadMessages();
-                        fileconfig.initMessages();
+                        Fileconfig.loadMessages();
+                        Fileconfig.initMessages();
                     }
-                    p.sendMessage(fileconfig.reloaded);
+                    p.sendMessage(Fileconfig.reloaded);
                 } else {
-                    p.sendMessage(fileconfig.nopermission);
+                    p.sendMessage(Fileconfig.nopermission);
                 }
             }
         }

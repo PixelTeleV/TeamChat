@@ -1,7 +1,7 @@
 package ch.pixeltv.main;
 
-import ch.pixeltv.commands.teamchat;
-import ch.pixeltv.util.fileconfig;
+import ch.pixeltv.commands.Teamchat;
+import ch.pixeltv.util.Fileconfig;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,12 +12,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Give Credits if changing SourceCode!
  * Coded with Intellij
  */
-public class main extends JavaPlugin {
+public class Main extends JavaPlugin {
 
     //Version String
     public static String version = "Release 1.0";
 
-    public static main instance;
+    public static Main instance;
 
     public void onEnable() {
         //Enable Message
@@ -32,12 +32,12 @@ public class main extends JavaPlugin {
         instance = this;
 
         //Register Config Methods
-        fileconfig.loadMessages();
-        fileconfig.initMessages();
+        Fileconfig.loadMessages();
+        Fileconfig.initMessages();
 
         //Register Commands
-        getCommand("teamchat").setExecutor(new teamchat());
-        getCommand("tc").setExecutor(new teamchat());
+        getCommand("Teamchat").setExecutor(new Teamchat());
+        getCommand("tc").setExecutor(new Teamchat());
     }
 
     public void onDisable() {
