@@ -24,6 +24,9 @@ public class Fileconfig {
     public static String seeperm;
     public static String reloadperm;
     public static String listperm;
+    public static String syntaxtc;
+    public static String nownotify;
+    public static String nomorenotify;
 
     public static File ConfigFile = new File("plugins/TeamChat", "config.yml");
     public static FileConfiguration Config = YamlConfiguration.loadConfiguration(ConfigFile);
@@ -33,11 +36,14 @@ public class Fileconfig {
     }
 
     public static void loadMessages() {
-        Config.addDefault("messages.reloaded", "§8┃ §eTeamChat§8» §7 Das Plugin §eTeamChat §7wurde §aneu geladen§7!");
-        Config.addDefault("messages.nopermission", "§8┃ §eTeamChat§8» §7 Du hast §ckeinen Zugriff §7auf §ediesen Befehl§7!");
-        Config.addDefault("messages.noplayer", "§8┃ §eTeamChat§8» §7 Du bist §ckein §eSpieler§7!");
-        Config.addDefault("messages.syntax", "§8┃ §eTeamChat§8» §7 Benutze: §a/tc <Nachricht> §7um eine §eNachricht §7zu §asenden§7!");
-        Config.addDefault("messages.message", "§8┃ §eTeamChat§8» §7 §a%player% §8┃ §7%message%");
+        Config.addDefault("messages.reloaded", "§8┃ §eTeamChat§8» §7Das Plugin §eTeamChat §7wurde §aneu geladen§7!");
+        Config.addDefault("messages.nopermission", "§8┃ §eTeamChat§8» §7Du hast §ckeinen Zugriff §7auf §ediesen Befehl§7!");
+        Config.addDefault("messages.noplayer", "§8┃ §eTeamChat§8» §7Du bist §ckein §eSpieler§7!");
+        Config.addDefault("messages.syntax", "§8┃ §eTeamChat§8» §7Benutze: §a/tc <Nachricht> §7um eine §eNachricht §7zu §asenden§7!");
+        Config.addDefault("messages.message", "§8┃ §eTeamChat§8» §a%player% §8┃ §7%message%");
+        Config.addDefault("messages.syntaxteamchat", "§8┃ §eTeamChat§8» §cSyntax: §a/teamchat <Reload | Toggle>");
+        Config.addDefault("messages.nownotify", "§8┃ §eTeamChat§8» §7Du erhältst nun §aalle §eBenachrichtigungen§7!");
+        Config.addDefault("messages.nomorenotify", "§8┃ §eTeamChat§8» §7Du erhältst nun §ckeine §eBenachrichtigungen§7!");
         Config.addDefault("permissions.use", "System.TeamChat.Use");
         Config.addDefault("permissions.see", "System.TeamChat.See");
         Config.addDefault("permissions.reload", "System.TeamChat.Reload");
@@ -57,6 +63,9 @@ public class Fileconfig {
         noplayer = Config.getString("messages.noplayer");
         syntax = Config.getString("messages.syntax");
         message = Config.getString("messages.message");
+        syntaxtc = Config.getString("messages.syntaxteamchat");
+        nownotify = Config.getString("messages.nownotify");
+        nomorenotify = Config.getString("messages.nomorenotify");
         useperm = Config.getString("permissions.use");
         seeperm = Config.getString("permission.see");
         reloadperm = Config.getString("permissions.reload");

@@ -8,6 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+
 /**
  * Coded by PixelTeleV
  * 01.09.18
@@ -16,6 +18,8 @@ import org.bukkit.entity.Player;
  * Coded with Intellij
  */
 public class Teamchat implements CommandExecutor {
+
+    public static ArrayList<Player> notification = new ArrayList<>();
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player)sender;
@@ -35,11 +39,12 @@ public class Teamchat implements CommandExecutor {
 
                         for (Player p1 : Bukkit.getOnlinePlayers()) {
                             if (p1.hasPermission(Fileconfig.seeperm)) {
-                                String msg = Fileconfig.message;
-                                msg = msg.replace("%player%", p.getName());
-                                msg = msg.replace("%message%", message);
-                                p1.sendMessage(msg)
-                                ;
+                                if(!notification.contains(p)) {
+                                    String msg = Fileconfig.message;
+                                    msg = msg.replace("%player%", p.getName());
+                                    msg = msg.replace("%message%", message);
+                                    p1.sendMessage(msg);
+                                }
                             }
                         }
                     } else {
@@ -68,10 +73,20 @@ public class Teamchat implements CommandExecutor {
                     if (p.hasPermission(Fileconfig.reloadperm)) {
                         Fileconfig.loadMessages();
                         Fileconfig.initMessages();
+                        p.sendMessage(Fileconfig.reloaded);
+                    } else {
+                        p.sendMessage(Fileconfig.nopermission);
                     }
-                    p.sendMessage(Fileconfig.reloaded);
+                } else if(args[0].equalsIgnoreCase("toggle")) {
+                    if(notification.contains(p)) {
+                        notification.remove(p);
+                        p.sendMessage(Fileconfig.nownotify);
+                    } else {
+                        notification.add(p);
+                        p.sendMessage(Fileconfig.nomorenotify);
+                    }
                 } else {
-                    p.sendMessage(Fileconfig.nopermission);
+                    p.sendMessage(Fileconfig.syntaxtc);
                 }
             }
         }
