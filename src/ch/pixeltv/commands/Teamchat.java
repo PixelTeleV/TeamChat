@@ -22,7 +22,7 @@ public class Teamchat implements CommandExecutor {
 
         //TC Command
         if (cmd.getName().equalsIgnoreCase("tc")) {
-            if (p.hasPermission("System.TeamChat.Use"))
+            if (p.hasPermission(Fileconfig.useperm))
             {
                 int i;
                 if ((sender instanceof Player)) {
@@ -34,7 +34,7 @@ public class Teamchat implements CommandExecutor {
                         }
 
                         for (Player p1 : Bukkit.getOnlinePlayers()) {
-                            if (p1.hasPermission("System.TeamChat.See")) {
+                            if (p1.hasPermission(Fileconfig.seeperm)) {
                                 String msg = Fileconfig.message;
                                 msg = msg.replace("%player%", p.getName());
                                 msg = msg.replace("%message%", message);
@@ -46,7 +46,7 @@ public class Teamchat implements CommandExecutor {
                         p.sendMessage(Fileconfig.syntax);
                         p.sendMessage("§7Es sind folgende §eTeammitglieder §aOnline§7:");
                         for (Player all : Bukkit.getOnlinePlayers()) {
-                            if (all.hasPermission("System.TeamChat.List")) {
+                            if (all.hasPermission(Fileconfig.listperm)) {
                                 p.sendMessage("§a- §e" + all.getName());
                             }
                         }
@@ -65,7 +65,7 @@ public class Teamchat implements CommandExecutor {
                 p.sendMessage("§eTeamChat Plugin §7coded by §aPixelTeleV§7! §9Version: " + Main.version);
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
-                    if (p.hasPermission("System.TeamChat.Reload")) {
+                    if (p.hasPermission(Fileconfig.reloadperm)) {
                         Fileconfig.loadMessages();
                         Fileconfig.initMessages();
                     }

@@ -20,6 +20,10 @@ public class Fileconfig {
     public static String noplayer;
     public static String syntax;
     public static String message;
+    public static String useperm;
+    public static String seeperm;
+    public static String reloadperm;
+    public static String listperm;
 
     public static File ConfigFile = new File("plugins/TeamChat", "config.yml");
     public static FileConfiguration Config = YamlConfiguration.loadConfiguration(ConfigFile);
@@ -34,6 +38,10 @@ public class Fileconfig {
         Config.addDefault("messages.noplayer", "§8┃ §eTeamChat§8» §7 Du bist §ckein §eSpieler§7!");
         Config.addDefault("messages.syntax", "§8┃ §eTeamChat§8» §7 Benutze: §a/tc <Nachricht> §7um eine §eNachricht §7zu §asenden§7!");
         Config.addDefault("messages.message", "§8┃ §eTeamChat§8» §7 §a%player% §8┃ §7%message%");
+        Config.addDefault("permissions.use", "System.TeamChat.Use");
+        Config.addDefault("permissions.see", "System.TeamChat.See");
+        Config.addDefault("permissions.reload", "System.TeamChat.Reload");
+        Config.addDefault("permissions.list", "System.TeamChat.List");
 
         Config.options().copyDefaults(true);
         try {
@@ -49,6 +57,10 @@ public class Fileconfig {
         noplayer = Config.getString("messages.noplayer");
         syntax = Config.getString("messages.syntax");
         message = Config.getString("messages.message");
+        useperm = Config.getString("permissions.use");
+        seeperm = Config.getString("permission.see");
+        reloadperm = Config.getString("permissions.reload");
+        listperm = Config.getString("permissions.list");
     }
 
 }
