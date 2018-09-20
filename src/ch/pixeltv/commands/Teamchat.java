@@ -78,12 +78,16 @@ public class Teamchat implements CommandExecutor {
                         p.sendMessage(Fileconfig.nopermission);
                     }
                 } else if(args[0].equalsIgnoreCase("toggle")) {
-                    if(notification.contains(p)) {
-                        notification.remove(p);
-                        p.sendMessage(Fileconfig.nownotify);
+                    if(p.hasPermission(Fileconfig.toggleperm)) {
+                        if(notification.contains(p)) {
+                            notification.remove(p);
+                            p.sendMessage(Fileconfig.nownotify);
+                        } else {
+                            notification.add(p);
+                            p.sendMessage(Fileconfig.nomorenotify);
+                        }
                     } else {
-                        notification.add(p);
-                        p.sendMessage(Fileconfig.nomorenotify);
+                        p.sendMessage(Fileconfig.nopermission);
                     }
                 } else {
                     p.sendMessage(Fileconfig.syntaxtc);

@@ -27,6 +27,7 @@ public class Fileconfig {
     public static String syntaxtc;
     public static String nownotify;
     public static String nomorenotify;
+    public static String toggleperm;
 
     public static File ConfigFile = new File("plugins/TeamChat", "config.yml");
     public static FileConfiguration Config = YamlConfiguration.loadConfiguration(ConfigFile);
@@ -48,6 +49,7 @@ public class Fileconfig {
         Config.addDefault("permissions.see", "System.TeamChat.See");
         Config.addDefault("permissions.reload", "System.TeamChat.Reload");
         Config.addDefault("permissions.list", "System.TeamChat.List");
+        Config.addDefault("permissions.toggle", "System.TeamChat.Toggle");
 
         Config.options().copyDefaults(true);
         try {
@@ -70,6 +72,7 @@ public class Fileconfig {
         seeperm = Config.getString("permission.see");
         reloadperm = Config.getString("permissions.reload");
         listperm = Config.getString("permissions.list");
+        toggleperm = Config.getString("permissions.toggle");
     }
 
 }
